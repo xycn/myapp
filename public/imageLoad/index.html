@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html  lang="zh-cn" >
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>阅读页</title>
+      <link href="main.css" rel="stylesheet" />
+      <script src="jquery.min.js"></script>
+      <script  src="iScroll.js"></script>
+      <script src="data.js"></script>
+      <script src="imageLoad.js"></script>
+  </head>
+  <body  >
+     <div id="swh-n-d">切换</div>
+      <div class="fontsize"><div  onclick="setFontSize('larger')">大</div><div  onclick="setFontSize('normal')">中</div><div  onclick="setFontSize('smaller')">小</div></div>
+      <div id="title_pre"></div>
+      <header>
+          <div id="title"  class="title"></div>
+          <p class="source"><span id="source"></span><span  id="label"></span></p>
+      </header>
+
+      <article  >
+      <section id="article_body" class="contentstyle">
+      </section>
+ </article>
+      <div id='mask' class="  dd">
+           <div id="backto" ><div   class="backto">      </div></div>
+           <div id="maskcontent">
+      <!--     <div id="wrapper">-->
+	<div id="scroller">
+               <ul id="imgul">
+		</ul>
+               <!--</div>-->
+          </div></div>
+          <div id="download">1/10</div>
+       </div>
+      <footer><div id="from" style="float: right;
+_display: inline;
+font-size: 12px;
+line-height: 13px;
+padding: 6px 0;height:40px;margin-right:3px;"  >
+                    <span style="float:left"  class="source"><a  style="color: #0f6b99;" href="http://news.163.com/"><img  class="powerimg" style="margin-left: 2px;
+border: 0;vertical-align: top;" src="http://img1.cache.netease.com/cnews/css13/img/end_news.png" alt="吴静" width="13" height="12" ></a> 本文来源：新华网  作者：钱彤  荀伟</span>
+                                    </div></footer>
+  </body>
+</html>

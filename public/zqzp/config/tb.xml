@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root><!--转盘配置文件-->
+  <turntable>
+    <!-- bgvalue  转盘背景   bordercolor  转盘边框色     bordercolor   边框色    borderimage 边框图片（值为空或者不定义此属性时，会取bordercolor的值）    pointer   转盘指针图片路径-->
+    <template  symbol="zqzp"  mine="false"  id="0"  bgvalue="http://img.spriteapp.cn/www/zqzp/image/bj.jpg"  bordercolor="#007ACC"   borderimage="http://img.spriteapp.cn/www/zqzp/image/boeder2.png"  pointer="http://img.spriteapp.cn/ws/huodong/a/arrow_c-1.png"  fxlx="0"   landurl="http://www.budejie.com/events/zqzp/zqzp_land.html">
+      <!-- title  分享时的标题   name 和result分别为测试姓名和结果占位名称         image    分享时的图片-->
+      <share   title="卧槽，name一直在寻找的月饼竟然是：result"  image="http://img.spriteapp.cn/www/zqzp/image/budejie_logo2.jpg" />
+      <form>亲，来块月饼吧 ！</form>
+      <!-- name 为姓名占位名称  -->
+      <info  bgvalue="http://img.spriteapp.cn/ws/huodong/a/result.png"  value="卧槽，我一直在寻找的月饼竟然是："></info>
+
+      <!--bgtype          0 背景是颜色     1  背景是图片
+           percenttype    0  按选项个数等分比例     1   指定比例（和必须等于100）
+           bgvalue       bgtype="0"  时，值为颜色值  bgtype="1"时，值为图片路径
+           font            格式为  字重（normal  bold  500等） 字号   字体
+           fontcolor     文字颜色          
+           value          转盘真正要显示的结果,选项标题
+           desfont       选项描述文字
+           descolor      选项描述文字颜色
+           desval         选项描述文字
+           percent       比例值  percenttype="0"时， 忽略该属性
+    -->
+      <options  bgtype="0"  percenttype="0">
+      	<option    bgvalue="#19BDB4"  font="normal 15px Microsoft YaHei "  fontcolor="#fff"  percent="10"  desfont="normal 15px Microsoft YaHei "  descolor="#fff"  value="五仁月饼"   desval="" redes="老牌经典的代表，随时代变迁虽具争议，但依旧凭借其威严不可侵犯的神圣地位和其特立独行的独特口味活跃于这个新时代。">五仁月饼</option>   	
+        <option    bgvalue="#1998C3"  font="normal 15px Microsoft YaHei "  fontcolor="#fff"  percent="15"  desfont="normal 15px Microsoft YaHei "  descolor="#fff"    value="黑木耳酸"    desval="黄瓜月饼"  redes="古法烹饪历经三十年磨练，经多名业内专业人士验证通过，款式经典，至臻之选。">黑木耳酸黄瓜月饼</option>
+        <option    bgvalue="#FC9D4D"  font="normal 15px Microsoft YaHei "   fontcolor="#fff"  percent="10"  desfont="normal 15px Microsoft YaHei "  descolor="#fff" value="鲍鱼象"   desval="拔蚌月饼"  redes="肥美多汁，入口即化，成功人士的象征，上流社会的挚爱。">鲍鱼象拔蚌月饼</option>
+        <option    bgvalue="#E791AE"  font="normal 15px Microsoft YaHei "   fontcolor="#fff"  percent="10"  desfont="normal 15px Microsoft YaHei "  descolor="#fff"  value="蜂蜜苦菊"   desval="月饼"  redes="适用于特殊人群，促销装内附赠香皂一块。">蜂蜜苦菊月饼</option>
+        <option    bgvalue="#19BDB4"  font="normal 15px Microsoft YaHei "   fontcolor="#fff" percent="10"   desfont="normal 15px Microsoft YaHei "  descolor="#fff" value="蜜糖大肠"   desval="月饼"  redes="细腻润滑，甜美温和，配与通透绵长的主材料，简单而极致的搭配。">蜜糖大肠月饼</option>
+        <option    bgvalue="#1998C3"  font="normal 15px Microsoft YaHei "  fontcolor="#fff"  percent="10"  desfont="normal 15px Microsoft YaHei "  descolor="#fff" value="老干妈冰"   desval="激凌月饼"  redes="西方经典与东方神话的完美搭配，冰冷浪漫的冰淇淋搭配火辣粗犷的老干妈，这奇妙的搭配犹如这冥冥宇宙中的自然和谐之道，你品味的不止是美食，还是人生与生命的意义。">老干妈冰激凌月饼</option>
+        <option    bgvalue="#dec44e"  font="normal 15px Microsoft YaHei "  fontcolor="#fff"  percent="20"   desfont="normal 15px Microsoft YaHei "  descolor="#fff" value="螺旋海藻"    desval="月饼"  redes="来自深海的黄金产物，从外表你无法个体会到其独有的黄金价值，打开内在，你会感受到来自深海的气息，全新的健康时尚，以后不要再问你知道安利么？要说，你吃过螺旋海藻月饼么？">螺旋海藻月饼</option>
+        <option    bgvalue="#E791AE"  font="normal 15px Microsoft YaHei "   fontcolor="#fff"  percent="10" desfont="normal 15px Microsoft YaHei"  descolor="#fff"   value="双蛋火腿"    desval="肠月饼"   redes="18岁以下需在家长指引下使用。不宜过多，少吃怡情，多吃伤身，强塞灰飞烟灭使用，仅限口服。">双蛋火腿肠月饼</option>
+        <option    bgvalue="#dec44e"  font="normal 15px Microsoft YaHei "  fontcolor="#fff"  percent="20"   desfont="normal 15px Microsoft YaHei "  descolor="#fff" value="  鱼翅月饼"    desval="" redes="该款月饼是财富的象征，对理财投资很有见解，精打细算十分追求物质的享受人群的首选，所以“土豪”的你值得拥有。">鱼翅月饼</option>
+        <option    bgvalue="#E791AE"  font="normal 15px Microsoft YaHei "  fontcolor="#fff"  percent="10"  desfont="normal 15px Microsoft YaHei "  descolor="#fff"  value=" 韭菜鸡蛋 "   desval="月饼"  redes="东方独特的经典食材，搭配大众喜爱的营养元素，跨界之作方显大成。">韭菜鸡蛋月饼</option>
+
+      </options>  
+    </template>
+  </turntable>
+  
+</root>

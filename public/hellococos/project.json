@@ -1,0 +1,24 @@
+{
+    "project_type": "javascript",
+
+    "debugMode" : 1,
+    "showFPS" : false,
+    "frameRate" : 60,
+    "id" : "gameCanvas",
+    "renderMode" : 1,
+    "engineDir":"frameworks/cocos2d-html5",
+
+    "modules" : ["cocos2d"],
+
+    "jsList" : [
+        "src/resource.js",
+        "src/config/gameConfig.js",
+        "src/menu-layer.js",
+        "src/setting-layer.js",
+        "src/Menu/scene/MainMenuLayer.js",
+        "src/Menu/layer/menuBgLayer.js",
+        "src/Menu/layer/menuTouchLayer.js",
+        "src/Menu/layer/backToMenuLayer.js",
+        "src/actionDemo.js"
+    ]
+}

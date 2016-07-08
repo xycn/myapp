@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.timer-down {
+                display: table; 
+                color: #fff;
+                font-size: 28px;						
+			}			
+			.timer-down .item{
+				float: left;
+				height: 50px;
+				width: 50px;
+				text-align: center;
+				line-height: 50px;
+				background-color:#000;
+                margin-left: 10px;
+                box-shadow: 0 6px 4px rgba(0,0,0,.8);
+				
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				-ms-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+								
+				transform-origin: center bottom;
+				-webkit-transform-origin: center bottom;
+			}
+			
+		@keyframes rotateDown {
+            0% {
+                transform: perspective(100px) rotate3d(0,0,0,0);
+                opacity: 1
+            }
+            100% {
+                transform: perspective(100px) rotate3d(1,0,0,-90deg);
+                opacity: 0.5
+            }
+        }
+        @-webkit-keyframes rotateDown {
+            0% {
+                -webkit-transform: perspective(100px) rotate3d(0,0,0,0);
+                opacity: 1
+            }
+            100% {
+                -webkit-transform: perspective(100px) rotate3d(1,0,0,-90deg);
+                opacity: 0.5
+            }
+        }
+        @keyframes rotateDown-back{
+            0% {
+                transform: perspective(100px) rotate3d(1,0,0,90deg);
+                opacity: 0.5
+            }
+            100% {
+                transform: perspective(100px) rotate3d(0,0,0,0);
+                opacity: 1
+            }
+        }
+        @-webkit-keyframes rotateDown-back{
+            0% {
+                -webkit-transform: perspective(100px) rotate3d(1,0,0,90deg);
+                opacity: 0.5
+            }
+            100% {
+                -webkit-transform: perspective(100px) rotate3d(0,0,0,0);
+                opacity: 1
+            }
+        }
+        .animation-rotateDown {
+            animation:rotateDown 300ms ease-in;
+            -webkit-animation: rotateDown 300ms ease-in;
+        }
+        .animation-rotateDown-back{
+            animation: rotateDown-back 300ms ease-out;
+            -webkit-animation: rotateDown-back 300ms ease-out;
+        }
+		</style>
+		<script src="../js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="timer-down">
+			<div class="item" id="month">10</div>
+			<div class="item" id="day">20</div>
+			<div class="item" id="hour">11</div>:
+			<div class="item" id="minute">50</div>
+            <div class="item" id="second">30</div>
+		</div>
+	</body>
+	<script>
+    $(function(){
+    function setNum(obj){
+      obj.attr("class", "item");
+      obj.addClass("animation-rotateDown");
+      setTimeout(function(){
+        obj.addClass("animation-rotateDown-back");
+      }, 300);
+    }
+    function update(){
+        var date=new Date();
+        var month = date.getMonth() + 1,
+        today = date.getDate(),
+        hour=date.getHours(),
+        minute=date.getMinutes(),
+        second=date.getSeconds();
+        var o_hour=$("#hour").text(),
+        o_minute=$("#minute").text(),
+        o_second=$("#second").text();
+        if(Number(o_second)>58){
+           setNum($("#minute")); 
+           if(Number(o_minute)>58){
+              setNum($("#hour"));
+              if(Number(o_hour)>23){
+                setNum($("#hour"));
+              }
+           }
+        }            
+        setNum($("#second"));
+        setTimeout(function(){
+            $("#month").text(month);
+            $("#day").text(today);
+            $("#hour").text(hour);
+            $("#minute").text(minute);
+            $("#second").text(second);
+        },300)        
+        setTimeout(update,1000)
+    }
+    update();
+    })
+	</script>
+</html>

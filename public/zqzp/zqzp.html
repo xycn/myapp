@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		<title></title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
+		<meta name="format-detection" content="telephone=no">
+		<link href="http://img.spriteapp.cn/www/zqzp/css/reset.css" rel="stylesheet" />
+		<link href="http://img.spriteapp.cn/www/zqzp/css/wheel.css" rel="stylesheet" />
+		<script src="http://img.spriteapp.cn/www/zqzp/js/jquery-1.8.3.min.js"></script>
+		<script src="http://img.spriteapp.cn/www/zqzp/js/cv.js"></script>
+		<script src="http://img.spriteapp.cn/www/zqzp/js/rotate.js"></script>		
+	</head>
+	<body>
+		<div class="table">
+			<div   class="table-cell">
+				<header class="title-top" >
+					<div class="newlogo">
+						<img src="http://img.spriteapp.cn/ws/land/budejie_logo2.jpg" />
+					</div>
+					<div class="titledv">
+						<p id="title"></p>
+					</div>
+				</header>
+				<div  class="mask">
+					<div id="result">
+						<div id="close"  onclick="closere()">
+							<img alt="" width="35" src="http://img.spriteapp.cn/www/zqzp/image/close.png" />
+						</div>
+                        <div  class="cardtop">——  测 试 结 果 出 来 啦 ——</div>
+						<div class="rtform">
+							<div class="info">
+								<p  id="info">								
+								</p>
+							</div>
+							<div  class="share">
+								<div id="rtname">							
+								</div>
+							</div>
+                            <div class="des">
+                                 <p  id="redes"></p>
+                            </div>
+							<button  id="share"    onclick="share()">
+								分享给好友
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div id="cvmap">
+					<div   class="select">
+						<ul>
+							<li  onclick="">
+								<div  class="wraper">
+									<h5>测自己</h5>
+									<p>
+										分享时匿名
+									</p>
+								</div>
+							</li>
+							<li>
+								<div  class="wraper">
+									<h5>测好友</h5>
+									<p>
+										分享时显示名字
+									</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<canvas id="wheels">
+						您的浏览器不支持canvas。
+					</canvas>
+				</div>
+				<section id="mytest">
+					<div id="error"></div>
+					<section class="form">
+						<div class="stretched-box">
+							<input type="text" class="text"   id="name"  autocomplete="off" placeholder="请输入名字.." />
+						</div>
+						<button id="begin" class="begin"   onclick="  start()"></button>
+					</section>
+				</section>
+				<script>
+			window.addEventListener('load', function() {
+			    $.get("http://api.budejie.com/api/api_open.php?a=report&c=co&from=self&name="+symbol);
+			}, false);
+			var bridge = null;
+			var mine;
+			var shareTitle;
+			var imgUrl;
+			var landUrl;
+			var shared;
+			function start() {
+				shared=false;
+				if (mine == undefined) {
+					$("#error").text("请先选择测试对象").show();
+					setTimeout(function() {
+						$("#error").hide()
+					}, 2000);
+					return;
+				}
+				if ($("#name").val().trim() == "") {
+					$("#error").text("输入名字才能测试哦").show();
+					setTimeout(function() {
+						$("#error").hide()
+					}, 2000);
+					return;
+				}
+				if ($("#name").val().trim().length > 5) {
+					$("#error").text("名字不要太长哦").show();
+					setTimeout(function() {
+						$("#error").hide()
+					}, 2000);
+					return;
+				}
+				if (Flag) {
+				    $.get("http://api.budejie.com/api/api_open.php?a=report&c=co&action=start&name="+symbol);
+					rotate($("#name").val());
+				}
+			}
+			function closere() {
+			    if (fxlx == "1") {
+			        if (shared) {
+			            $('.mask').css('bottom', '100%')
+			            //drawWheel(NaN);
+			        } else {
+			            alert('分享后测试更多~')
+			        }
+			    }
+			    else {
+			        $('.mask').css('bottom', '100%')
+			    }
+			}
+			$(function() {
+				// android
+				if ("undefined" != typeof android) {
+					bridge = android;
+				}
+				// ios
+				function onBridgeReady(event) {
+					bridge = event.bridge;
+				}
+
+				try {
+					document.addEventListener('WebViewJavascriptBridgeReady', onBridgeReady, false)
+				} catch (e) {
+					alert(e);
+				}
+			});
+			//分享
+			function shareSNS(snsName, title, imageURL, desc, landURL, audioURL, vedioURL, reserve, huodongId) {
+			    if (bridge != null) {			        
+				    bridge.shareSNS(snsName, title, imageURL, desc, landURL, audioURL, vedioURL, reserve, huodongId);				    
+				} else {
+					alert('请在"百思不得姐"中进行此操作！');
+				}
+			}
+			// 分享成功
+			function shareSNSSuccess(snsName) {
+			    shared = true;
+			    $('#rtname').text("\"" + target + "\"");
+			    $('#redes').text(targetdes);
+			    $('#share').text("分享给好友");
+			    $('#result').show();
+			}
+			function selectmine() {
+				$('.select').show();
+				$('.select  li').click(function() {
+					if ($(this).index() == 0) {
+						mine = true;
+					} else {
+						mine = false;
+					}
+					$('.select').hide();
+				});
+			}
+			function onShare() {
+			    landUrl = "http://api.budejie.com/api/api_open.php?a=report&c=co&from=friend&name=" + symbol + "&rect=" + encodeURIComponent(landurl);
+			    imgUrl = shareImgSrc;
+			    if ($('#name').val() == "" || target == undefined) {
+			        shareTitle = title + "快来试试吧";
+			    } else {
+			        if (fxlx == "1") {
+			            if (shared) {
+			                shareTitle = mine == true ? shareInfo.replace('name', '我').replace('result', target) : shareInfo.replace('name', $('#name').val()).replace('result', target);
+			            }
+			            else {
+			                shareTitle = mine == true ? shareInfo.replace('name', '我').replace('result', '***') : shareInfo.replace('name', $('#name').val()).replace('result', '***');
+			            }
+			        }
+			        else {
+			            shareTitle = mine == true ? shareInfo.replace('name', '我').replace('result', target) : shareInfo.replace('name', $('#name').val()).replace('result', target);
+			        }
+			    }
+			    $.get("http://api.budejie.com/api/api_open.php?a=report&c=co&action=shareall&name=" + symbol);
+			}
+			function share() {		
+				onShare();
+				shareSNS("", shareTitle, imgUrl, shareTitle, landUrl,"" , "", "", "");
+			}
+
+		</script>
+				<script>
+					(function(i, s, o, g, r, a, m) {
+						i['GoogleAnalyticsObject'] = r;
+						i[r] = i[r] ||
+						function() {
+							(i[r].q = i[r].q || []).push(arguments)
+						}, i[r].l = 1 * new Date();
+						a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+						a.async = 1;
+						a.src = g;
+						m.parentNode.insertBefore(a, m)
+					})(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+					ga('create', 'UA-41454169-1', 'budejie.com');
+					ga('send', 'pageview');
+
+				</script>
+				<div style="display:none">
+					<script  src="http://s21.cnzz.com/stat.php?id=449060&web_id=4449060"></script>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

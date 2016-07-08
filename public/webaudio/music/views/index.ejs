@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="Keywords" content="音乐可视化,webAudio,passion,passionate,music,音乐,HTML5,canvas,CSS3,自适应"> 
+    <meta name="Description" content="利用HTML5 webAudio API 和canvas API以及CSS3制作成的自适应的音乐可视化应用">
+    <meta name="Author" content="Doving">
+    <meta name="Robots" content= "all">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+  </head>
+  <body>
+  	<header>
+  		<h1><%= title %></h1>
+      <ul class="type">
+        <li class="selected">Dot</li>
+        <li>Column</li>
+      </ul>
+      <p>Volume <input id="volume" type="range" min="0" max="100" value="60"></p>
+      <div class="fork">
+        <div class="border">
+          <a target="_blank" href="https://github.com/doving/webAudio">Fork Me On GitHub</a>
+        </div>
+      </div>
+  	</header>  	
+    <div class="list" id="list">
+    	<button class="music-add" id="add">
+    		Local music
+    	</button>
+      <input class="upload" type="file" id="upload" />
+    	<ul class="music-list" id="music-list">
+        <% music.forEach(function(item){%>
+            <li><%= item %></li>
+        %<})%>
+        
+    	</ul>
+    </div>
+    <div class="canvas" id="canvas">
+    </div>
+    <div class="loading-box" id="loading-box">
+      <ul id="loading">
+        <li class='l'></li>
+        <li class='o'></li>
+        <li class='a'></li>
+        <li class='d'></li>
+        <li class='i'></li>
+      </ul>
+      <div class="play" id="play">PLAY</div>
+    </div>
+    <script type="text/javascript" src='/javascripts/MusicVisualizer.js'></script>
+    <script type="text/javascript" src='/javascripts/index.js'></script>
+    <div style="display: none">
+    </div>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<button id="start" >加载</button>
+<img data-src="http://p2.qhimg.com/t01ed1438874f940dc0.jpg" src="" alt=""/>
+<img data-src="http://p9.qhimg.com/t01b4ff03b72c7dc6c7.jpg" src="" alt=""/>
+<img data-src="http://p2.qhimg.com/t01dd90dfbec92074d0.jpg" src="" alt=""/>
+<img data-src="http://p7.qhimg.com/t01cfec6d87cde457c5.jpg" src="" alt=""/>
+<img data-src="http://p9.qhimg.com/t01943ced462da67833.jpg" src="" alt=""/>
+<img data-src="http://p0.qhimg.com/t01943ced462da67833.jpg" src="" alt=""/>
+<img data-src="http://p6.qhimg.com/t01aa15a7ba7ccb49a7.jpg" src="" alt=""/>
+<img data-src="1209/speaker.gif" src="" alt=""/>
+<img data-src="1209/guide.png" src="" alt=""/>
+<img data-src="1209/loader.gif" src="" alt=""/>
+<img data-src="1209/music.png" src="" alt=""/>
+<img data-src="1209/share_weibo.jpg" src="" alt=""/>
+<img data-src="1209/share_weixin.png" src="" alt=""/>
+<img data-src="1209/shareGuide.png" src="" alt=""/>
+<img data-src="1209/speaker.png" src="" alt=""/>
+<img data-src="1209/speaker.gif" src="" alt=""/>
+<script>
+    $(function () {
+        var imgs=$('img').map(function(){
+            return $(this).data('src');
+        }).toArray();
+        console.log(imgs.length);
+        var nums=0;
+        var deferred = $.Deferred();
+        function loadSprite(deferred){
+            var count=imgs.length;
+            imgs.forEach(function(v){
+                var sprite = new Image();
+                sprite.onload = function() {
+                    nums++;
+                    console.log(nums);
+                    if(nums==count){
+                        //标记执行成功，会触发done方法
+                        deferred.resolve();
+                    }
+                };
+                sprite.src = v;
+            })
+            //返回defer对象，promise方法阻止其状态被外部修改
+            return deferred.promise();
+        }
+        $('#start').on('click',function(){
+            console.log(loadSprite);
+            //when，参数可以是多个defer对象，也就是多个异步处理的函数。
+            $.when(loadSprite(deferred)).done(function(){
+               alert('加载完毕')
+            }).fail(function(){
+                console.log('fail');
+            })
+        })
+    })
+</script>
+</body>
+</html>

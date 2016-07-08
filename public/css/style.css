@@ -1,0 +1,13 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.row{
+	border: 1px solid red;
+}
+.row div{
+	border: 1px solid blue;
+}

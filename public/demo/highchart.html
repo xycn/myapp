@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<script src="http://cdn.hcharts.cn/jquery/jquery-2.1.4.min.js"></script>
+		<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+	</head>
+
+	<body>
+		<div id="container"></div>
+	     <script>
+
+$(function () {
+    $('#container').highcharts({
+
+        // xAxis: {
+        //     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        // },
+
+        series: [{
+            name:'sss',
+            // x:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data:[23,20,34,54,76,87,54,89,43,89,34,65]
+            
+        //   [{  data: [{x:'2015-10-01',y:15},{x:'2015-10-02',y:30},{x:'2015-10-03',y:50}]
+        // },{
+        // 	data:[{x:'2015-10-01',y:22},{x:'2015-10-02',y:70}]
+        // }]
+    }]
+});
+});
+
+	     </script>
+	</body>
+</html>

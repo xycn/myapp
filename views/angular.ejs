@@ -1,0 +1,22 @@
+<html ng-app>
+<body>
+<ul ng-controller='StudentListController'>
+<li ng-repeat='student in students'>
+<a href='/student/view/{{student.id}}' ng-bind="student.name"></a>
+</li>
+</ul>
+<button ng-click="insertTom()">Insert</button>
+<script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+<script>
+var students = [{name:'Mary Contrary', id:'1'},
+{name:'Jack Sprat', id:'2'},
+{name:'Jill Hill', id:'3'}];
+function StudentListController($scope) {
+	$scope.students = students;
+	$scope.insertTom = function () {
+	  $scope.students.push({name:'Tom Thumb', id:'4'});
+    };
+}
+</script>
+</body>
+</html>

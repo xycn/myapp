@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title></title>
+    <style type="text/css">
+        html,body{
+            width:100%;
+            height:100%;
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            overflow-x:hidden;
+        }
+        *{margin:0;padding:0;}
+        img{
+            max-width:100%;
+        }
+        #space{
+            width:100%;
+            height:100%;
+            -webkit-perspective:1000px;
+            -moz-perspective:1000px;
+            perspective:1000px;
+            -webkit-perspective-origin:center center;
+            -moz-perspective-origin:center center;
+            perspective-origin:center center;
+        }
+        .wrap{
+            width:100%;
+            height:100%;
+            margin:0;
+            padding:0;
+            -webkit-transform-style:preserve-3d;
+            transform-style:preserve-3d;
+            -webkit-transition:-webkit-transform 1s cubic-bezier(1, 0.25, 0.26, 0.71);
+            -moz-transition:-webkit-transform 1s cubic-bezier(1, 0.25, 0.26, 0.71);
+            -o-transition:-webkit-transform 1s cubic-bezier(1, 0.25, 0.26, 0.71);
+            transition:-webkit-transform 1s cubic-bezier(1, 0.25, 0.26, 0.71);
+        }
+        .wrap .showbox{
+            float:left;
+            width:20%;
+            height:100%;
+            text-align:center;
+            -webkit-transform:translate3d(0,0,0);
+            -moz-transform:translate3d(0,0,0);
+            -o-transform:translate3d(0,0,0);
+            transform:translate3d(0,0,0);
+        }
+        .wrap .showbox h1{
+            padding:20px 0;
+        }
+        .wrap .showbox ul{
+            width:400px;
+            margin:0 auto;
+            counter-reset:li;
+            text-align:left;
+        }
+        .wrap .showbox li{
+            margin-top:10px;
+            list-style:none;
+        }
+        .wrap .showbox li::before{
+            display:inline-block;
+            width:25px;
+            height:25px;
+            margin-right:10px;
+            line-height:25px;
+            border-radius:50%;
+            background:orange;
+            color:#fff;
+            content:counter(li);
+            counter-increment:li;
+            text-align:center;
+        }
+        .wrap .showbox li a{
+            color:orange;
+            text-decoration:none;
+        }
+        .wrap .showbox .btn-group{
+            display:-webkit-box;
+            display:-webkit-flex;
+            display:flex;
+            margin-top:20px;
+        }
+        .wrap .showbox .btn-group span{
+            -webkit-box-flex:1;
+            -ms-flex:1;
+            -webkit-flex:1;
+            flex:1;
+            font-size:12px;
+        }
+        .wrap .showbox .btn-group input{
+            width:80px;
+        }
+        .wrap .showbox .btn-group a{
+            display:inline-block;
+            margin-right:15px;
+            padding:5px 10px;
+            background:#b3d4fc;
+            color:#fff;
+            border-radius:5px;
+            text-decoration: none;
+        }
+        #btnGroupFlex{
+            position:absolute;
+            bottom:100px;
+        }
+        .wrap .showbox .letter li::first-line{
+            color:orangered;
+        }
+        .wrap .showbox .dome{
+            display:-webkit-box;
+            display:-webkit-flex;
+            display:flex;
+            height:100%;
+        }
+        /*主轴对齐方式*/
+        .wrap .showbox .align-item{
+            -webkit-box-align:center;
+            -moz-box-align:center;
+            -webkit-align-items:center;
+            align-items:center;
+        }
+        /*侧轴对齐方式*/
+        .wrap .showbox .justify-content{
+            -webkit-box-pack:center;
+            -moz-box-pack:center;
+            -webkit-justify-content:center;
+            justify-content:center;
+        }
+        /*翻转*/
+        .wrap .showbox .row-reverse{
+            -webkit-flex-flow:row-reverse;
+            flex-flow: row-reverse;
+        }
+        .wrap .showbox .column-reverse{
+            -webkit-flex-flow:column-reverse;
+            flex-flow:column-reverse;
+        }
+        /*水平还是垂直显示flex布局*/
+        .wrap .showbox .column{
+            -webkit-flex-flow:column;
+            flex-flow:column;
+        }
+        .wrap .showbox .dome .left{
+            -webkit-box-flex:1;
+            -ms-flex:1;
+            -webkit-flex:1;
+            flex:1;
+            border:red solid 1px;
+        }
+        .wrap .showbox .dome .center{
+            -webkit-box-flex:1;
+            -ms-flex:1;
+            -webkit-flex:1;
+            flex:1;
+            border:green solid 1px;
+        }
+        .wrap .showbox .dome .right{
+            -webkit-box-flex:1;
+            -ms-flex:1;
+            -webkit-flex:1;
+            flex:1;
+            border:yellow solid 1px;
+        }
+        input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none}
+        input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none}
+        .wrap .showbox .text{
+            display: -webkit-box;
+            text-align:left;
+            overflow:hidden;
+        }
+        /* 封装方法 */
+        /*
+            .flex(num){
+                -webkit-box-flex:num;
+                -ms-flex:num;
+                -webkit-flex:num;
+                flex:num;
+            }
+        */
+        /*横屏*/
+        @media screen and (orientation:landscape){
+            html,body{
+                background:green;
+            }
+        }
+        /*竖屏*/
+        @media screen and (orientation: portrait) {
+            html,body{
+                background:dodgerblue;
+            }
+        }
+        @media screen and (min-width: 320px){
+            html,body{
+                background:red;
+            }
+        }
+        @media screen and (min-width: 480px) {
+            html,body{
+                background:yellowgreen;
+            }
+        }
+
+        @media screen and (min-width: 560px) {
+            html,body{
+                background:plum;
+            }
+        }
+
+        @media screen and (min-width: 720px) {
+            html,body{
+                background:purple;
+            }
+        }
+
+        @media screen and (min-width:960px){
+            html,body{
+                background:#fff;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="space">
+    <div class="wrap" id="wrap">
+        <div class="showbox">
+            <h1>首先这里是一张图片</h1>
+            <p id="img"><img src="/images/bg4.png" alt=""/></p>
+            <div class="btn-group" id="btnGroup">
+                <span><input type="range" min="0" max="100" value="0" id="blur"/> 模糊 </span>
+                <span><input type="range" min="0" max="100" value="100" id="brightness"/> 亮度 </span>
+                <span><input type="range" min="0" max="100" value="100" id="contrast"/> 对比度 </span>
+                <span><input type="range" min="0" max="100" value="0" id="grayscale"/> 灰度 </span>
+                <span><input type="range" min="0" max="360" value="360" id="huerotate"/> 色相旋转 </span>
+                <span><input type="range" min="0" max="100" value="0" id="invert"/> 反色 </span>
+                <span><input type="range" min="0" max="100" value="100" id="opacity"/> 透明度 </span>
+                <span><input type="range" min="0" max="100" value="100" id="saturate"/> 饱和度 </span>
+                <span><input type="range" min="0" max="100" value="0" id="sepia"/> 褐色程度 </span>
+                <!--<span><input type="text"/><a href="javascript:;" id="dropshadow">阴影</a></span>-->
+            </div>
+        </div>
+        <div class="showbox">
+            <h1>用css来实现带序列号的列表</h1>
+            <ul>
+                <li><a href="javascript:;">这里是个测试1</a></li>
+                <li><a href="javascript:;">这里是个测试2</a></li>
+                <li><a href="javascript:;">这里是个测试3</a></li>
+                <li><a href="javascript:;">这里是个测试4</a></li>
+                <li><a href="javascript:;">这里是个测试5</a></li>
+                <li><a href="javascript:;">这里是个测试6</a></li>
+                <li><a href="javascript:;">这里是个测试7</a></li>
+                <li><a href="javascript:;">这里是个测试8</a></li>
+                <li><a href="javascript:;">这里是个测试9</a></li>
+                <li><a href="javascript:;">这里是个测试10</a></li>
+            </ul>
+            <h1>伪类和伪元素的定义和区别</h1>
+            <ul id="activeList">
+                <li>伪类用于向某些选择器添加特殊的效果</li>
+                <li>伪元素用于将特殊的效果添加到某些选择器</li>
+                <li>伪类的效果可以通过添加一个实际的类来达到，而伪元素的效果则需要通过添加一个实际的元素才能达到</li>
+            </ul>
+            <div class="btn-group"><a href="javascript:;" id="btnActive">伪元素添加首字母样式</a><a href="http://sandbox.runjs.cn/show/s2aswsxn" target="_blank">通过伪元素来实现ios开关效果</a></div>
+        </div>
+        <div class="showbox">
+            <h1>flexbox布局</h1>
+            <div class="dome" id="dome">
+                <div class="left">左边</div>
+                <div class="center">中间</div>
+                <div class="right">右边</div>
+            </div>
+            <div class="btn-group" id="btnGroupFlex">
+                <a href="javascript:;" class="align-item">主轴居中</a>
+                <a href="javascript:;" class="justify-content">侧轴居中</a>
+                <a href="javascript:;" class="column">多行显示</a>
+                <a href="javascript:;" class="row-reverse">行内翻转</a>
+                <a href="javascript:;" class="column-reverse">栏目翻转</a>
+            </div>
+        </div>
+        <div class="showbox">
+            <h1>关于background-attachment做视觉滚动差</h1>
+            <a href="background.html">可以点这里</a>
+        </div>
+        <div class="showbox">
+            <div class="text" id="text">这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字</div>
+            <input type="text" id="line"/>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var space = document.getElementById('space'),
+        oPar = document.getElementById('wrap'),
+        img = document.getElementById('img'),
+        btnGroup = document.getElementById('btnGroup'),
+        btnGroupFlex = document.getElementById('btnGroupFlex'),
+        dom = document.getElementById('dome'),
+        oActive = document.getElementById('btnActive'),
+        cLen = document.getElementById('wrap').getElementsByClassName('showbox').length,
+        oBox = document.getElementById('wrap').getElementsByClassName('showbox');
+    oPar.style.width = (100*cLen)+'%';
+    for(var i= 0,len=oBox.length;i<len;i++){
+        oBox[i].style.width = 100/cLen+'%';
+    }
+    var EventUtil = {
+        addEvent:function(ele,type,hander){
+            if(ele.addEventListener){
+                ele.addEventListener(type,hander,false);
+            }else if(ele.attachEvent){
+                ele.attachEvent('on'+type,hander);
+            }else{
+                ele['on'+type] = hander;
+            }
+        },
+        getE:function(e){
+            return e || window.event;
+        },
+        target:function(e){
+            var event = EventUtil.getE(e);
+            return  event.target || event.srcElement;
+        }
+    };
+    var perEle = function(currentEle){
+        if(currentEle.previousElementSibling)
+            return currentEle.previousElementSibling
+        var pre=currentEle.previousSibling;
+        while(pre){
+            if(pre.nodeType===1){
+                return pre;
+            }
+            pre=pre.previousSibling;
+        }
+        return null;
+    }
+    var filter  = function(elem,cur,type,num){
+        var val = perEle(cur).value;
+        if(val == 0 || !val){
+            elem.style.webkitFilter = type+0+num;
+        }
+        elem.style.webkitFilter = type+'('+val+''+num+')';
+    };
+    var getVal = function(e,type,num){
+        e = e || window.event;
+        var target = e.target ? e.target : e.srcElement;
+        var oVal = target.value;
+        if(oVal == 0){
+            img.style.webkitFilter = type +'(0'+num+')';
+        }
+        img.style.webkitFilter = type +'('+oVal+''+num+')';
+    }
+    btnGroup.addEventListener('change',function(e){
+        e = e || window.event;
+        var tar = e.target ? e.target : e.srcElement;
+        switch(tar.id){
+            case 'blur':
+                getVal(e,'blur','px');
+                break;
+            case 'brightness':
+                getVal(e,'brightness','%');
+                break;
+            case 'contrast':
+                getVal(e,'contrast','%');
+                break;
+            case 'grayscale':
+                getVal(e,'grayscale','%');
+                break;
+            case 'huerotate':
+                getVal(e,'hue-rotate','deg');
+                break;
+            case 'invert':
+                getVal(e,'invert','%');
+                break;
+            case 'opacity':
+                getVal(e,'opacity','%');
+                break;
+            case 'saturate':
+                getVal(e,'saturate','%');
+                break;
+            case 'sepia':
+                getVal(e,'sepia','%');
+                break;
+        }
+    },false);
+    btnGroupFlex.addEventListener('click',function(e){
+        e = e || window.event;
+        var tar = e.target ? e.target : e.srcElement;
+        switch (tar.className){
+            case 'align-item':
+                dom.className = 'dome '+ tar.className;
+                break;
+            case 'justify-content':
+                dom.className = 'dome '+ tar.className;
+                break;
+            case 'column':
+                dom.className = 'dome ' + tar.className;
+                break;
+            case 'row-reverse':
+                dom.className = 'dome ' + tar.className;
+                break;
+            case 'column-reverse':
+                dom.className = 'dome ' + tar.className;
+                break;
+        }
+    },false);
+    oActive.addEventListener('click',function(){
+        var oUl = document.getElementById('activeList');
+        oUl.classList.add('letter');
+    },false);
+    var page = 1;
+    document.addEventListener('keydown',function(e){
+        e = e || window.event;
+        var key = e.keyCode;
+        if(key == 37 || key == 38){
+            if(page <=0){
+                page = 0;
+                return false;
+            }else{
+                oPar.style.webkitTransform = 'translate3d('+'-'+(page-1)*(100/cLen)+'%'+',0,0)';
+            }
+            page--;
+        }else if(key == 39 || key==40){
+            if(page > cLen -1){
+                page = cLen - 1;
+                return false;
+            }else{
+                oPar.style.webkitTransform = 'translate3d('+(-page*(100/cLen))+'%'+',0,0)';
+            }
+            page++;
+        }else{
+            page = 1;
+            return false;
+        }
+    });
+    var oText = document.getElementById('text'),
+        oLine = document.getElementById('line');
+    oLine.addEventListener('keydown',function(e){
+        e = e || window.event;
+        var keyCode = e.keyCode;
+        if(keyCode == 13){
+            var oVal = this.value;
+            oText.style.webkitLineClamp = oVal;
+            oText.style.webkitBoxOrient = 'vertical';
+            oText.style.textOverflow = 'ellipsis';
+        }
+    },false);
+</script>
+</html>

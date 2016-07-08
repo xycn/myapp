@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html style="font-size: 100px;">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui"/>
+    <title>yeah</title>
+    <link rel="stylesheet" href="css/land.css"/>
+    <script src="bower_components/zepto/zepto.min.js"></script>
+    <link href="http://vjs.zencdn.net/5.0.2/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/5.0.2/video.js"></script>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if (clientWidth < 641) {
+                            docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                        } else {
+                            docEl.style.fontSize = '100px';
+                        }
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+<header class="top-header">
+    <div class="brand">
+        <div class="logo"></div>
+        <div class="word">关注yeah公众号</div>
+    </div>
+    <!-- 关注按钮链接-->
+    <a href="">
+        <div class="btn">+关注</div>
+    </a>
+    <!-- end-->
+</header>
+<!--视频页 在main-wrap 后面加 video 例如:-->
+<!--<div class="main-wrap video">-->
+<div class="main-wrap video">
+    <section class="activity">
+        <div class="to-join act">
+            <div class="to-join-wrap">
+                <!-- 约球背景图片-->
+                <img src="img/bg6.jpg" alt=""/>
+                <!-- end-->
+                <div class="count-down">
+                    <div id="month">22</div>
+                    <aside class="yue">月</aside>
+                    <div class="day" id="day">22</div>
+                    <aside></aside>
+                    <div id="hour"> 22</div>
+                    <aside class="maohao">:</aside>
+                    <div id="minute"> 22</div>
+                </div>
+                <!-- 按钮上面的参加人数 目前不显示-->
+                <div class="members clearfix">
+                    <div class="mem-left">
+                        <span class="icon-people icon"></span>
+                        <span><em>434</em>人</span>
+                    </div>
+                    <div class="mem-right">
+                        <aside class="male">
+                            <span class="icon-male icon"></span>
+                            <span class="mail-num"><em>3333</em>人</span>
+                        </aside>
+                        <aside class="female">
+                            <span class="icon-female icon"></span>
+                            <span class="mail-num"><em>555</em>人</span>
+                        </aside>
+                    </div>
+                </div>
+                <!--end-->
+                <a href="">
+                    <div class="join-btn">
+                        <div class="btn">立即参与</div>
+                        <span class="right-go">GO!</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!--视频播放区域-->
+        <div class="to-join video">
+            <div class="to-join-wrap">
+                <div class="con-wrap">
+                    <div>
+                        <h6>科比季后赛十大经典比赛</h6>
+                        <p>#科比季后赛十大经典比赛#</p>
+                    </div>
+                    <div class="play-btn">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="video-wrap">
+                    <!-- src里填视频地址-->
+                    <!-- style里的height根据视频自身高度填充实际值  width写100%-->
+                    <video src="http://mvideo.spriteapp.cn/video/2016/0123/56a374d402e11_wpstar.mp4" class="video-js vjs-default-skin" id="land_video"
+                           style="width:100%;height:260px" width="100%" controls webkit-playsinline poster=""></video>
+                </div>
+            </div>
+        </div>
+        <!--</div>-->
+        <div class="about">
+            <p>科比生涯精彩比赛集锦</p>
+            <div class="about-me">
+                <div><img src="img/bg4.jpg" id="my-image" alt=""/></div>
+                <span class="my-name">宋小宝</span>
+                <!-- 视频顶、评论数-->
+                <span class="comment-count">10</span>
+                <span class="up-count">236</span>
+                <!--end -->
+                <!-- 约球时间-->
+                <span class="my-date">2015-10-10</span>
+                <!--end -->
+            </div>
+            <div class="about-venue"><span class="icon-location icon"></span><span>海淀体育馆足球场</span></div>
+        </div>
+        <div class="others">
+            <div class="about-somebody">
+                <img src="img/bg1.jpg" id="my-image" alt=""/>
+                <img src="img/bg2.jpg" id="my-image" alt=""/>
+                <img src="img/bg3.jpg" id="my-image" alt=""/>
+                <img src="img/bg4.jpg" id="my-image" alt=""/>
+                <img src="img/bg1.jpg" id="my-image" alt=""/>
+                <img src="img/bg2.jpg" id="my-image" alt=""/>
+                <img src="img/bg3.jpg" id="my-image" alt=""/>
+                <img src="img/bg4.jpg" id="my-image" alt=""/>
+            </div>
+            <div class="join-number">55人参加</div>
+        </div>
+        <!-- 视频页下载按钮-->
+        <a href="">
+            <div class="view-btn video">
+                <div><span class="icon"></span>
+                    <span>下载yeah查看评论</span></div>
+            </div>
+        </a>
+        <!-- end-->
+        <!-- 约球页查看全部人与人员按钮-->
+        <a href="">
+            <div class="view-btn">
+                <div><span class="icon"></span>
+                    <span>查看全部参与人员</span></div>
+            </div>
+        </a>
+        <!-- end-->
+    </section>
+    <section class="list">
+        <article class="items">
+            <!-- <a href=""></a>   列表链接-->
+            <a href="http://www.baidu.com">
+                <div class="list-item">
+                    <div class="figure">
+                        <img src="img/bg1.jpg" alt="">
+                    </div>
+                    <div class="intro">
+                        <h3 class="intro-title">没有队友也不怕，在家对墙啪啪啪</h3>
+
+                        <p>
+                            <span></span>
+                            <span class="minutes">00:50</span>
+                            <span></span>
+                            <span class="times">13229次播放</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <!-- end-->
+            <a href="">
+                <div class="list-item">
+                    <div class="figure">
+                        <img src="img/bg2.jpg" alt="">
+                    </div>
+                    <div class="intro">
+                        <h3 class="intro-title">没有队友也不怕，在家对墙啪啪啪啪啪啪啪了</h3>
+
+                        <p>
+                            <span></span>
+                            <span class="minutes">00:20</span>
+                            <span></span>
+                            <span class="times">32115次播放</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a href="">
+                <div class="list-item">
+                    <div class="figure">
+                        <img src="img/bg3.jpg" alt="">
+                    </div>
+                    <div class="intro">
+                        <h3 class="intro-title">没有队友也不怕，在家对墙啪啪啪啪啪啪啪了</h3>
+
+                        <p>
+                            <span></span>
+                            <span class="minutes">00:37</span>
+                            <span></span>
+                            <span class="times">15215次播放</span>
+
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </article>
+        <!-- 底部按钮-->
+        <a href="">
+            <div class="show-more-btn">
+                <div><span class="icon-query icon"></span><span>查看更多精彩内容</span></div>
+            </div>
+        </a>
+        <!-- end-->
+    </section>
+</div>
+
+<script>
+    $(function () {
+        function setNum(obj) {
+            obj.attr("class", "item");
+            obj.addClass("animation-rotateDown");
+            setTimeout(function () {
+                obj.addClass("animation-rotateDown-back");
+            }, 300);
+        }
+        function parseParam(name){
+            var queryReg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var queryStr = location.search.substr(1).match(queryReg);
+            if(queryStr !== null){
+                return queryStr[2];
+            }
+            return null;
+        }
+
+        function update() {
+            var date = new Date();
+            var month = date.getMonth() + 1,
+                    today = date.getDate(),
+                    hour = date.getHours(),
+                    minute = date.getMinutes(),
+                    second = date.getSeconds();
+            month = month < 10 ? '0' + Number(month) : month;
+            today = today < 10 ? '0' + Number(today) : today;
+            hour = hour < 10 ? '0' + Number(hour) : hour;
+            minute = minute < 10 ? '0' + Number(minute) : minute;
+            second = second < 10 ? '0' + Number(second) : second;
+            $("#month").text(month);
+            $("#day").text(today);
+            $("#hour").text(hour);
+            $("#minute").text(minute);
+            $("#second").text(second);
+            setTimeout(update, 1000)
+        }
+
+        update();
+
+        if(parseParam('type')=='1'){
+            $('.main-wrap').addClass('video')
+        }
+    })
+</script>
+<script>
+    var mPlayer = videojs('land_video');
+    $('.play-btn').on('click',function(){
+        $('.con-wrap').hide();
+        mPlayer.play();
+    })
+</script>
+</body>
+
+</html>

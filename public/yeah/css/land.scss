@@ -1,0 +1,588 @@
+@mixin inlineBlock {
+  display: inline-block;
+}
+
+@mixin borderRadius($size:4px) {
+  -webkit-border-radius: $size;
+  -moz-border-radius: $size;
+  border-radius: $size;
+}
+
+@mixin flexbox {
+  display: webkit-box;
+  display: box;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: flex;
+}
+@mixin flexbox-center{
+  display: flex;
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: box;
+  align-items:center;
+  -webkit-align-items:center;
+  box-align:center;
+  -webkit-box-align:center;
+  box-pack:center;
+  -webkit-box-pack:center;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+@mixin flex($size:1) {
+  flex: $size;
+  -webkit-flex: $size;
+  -ms-flex: $size;
+  -moz-box-flex: $size;
+}
+
+html {
+  font-size: 50px;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
+  overflow-x: hidden;
+  background: url(../img/wenli.jpg) repeat;
+  -webkit-background-size: 50%;
+  background-size: 50%;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', tahoma, Arial, sans-serif;
+  font-size: .12rem;
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.icon:after {
+  display: block;
+  width: 12px;
+  height: 12px;
+  content: ' ';
+  background: url(../img/land_icons.png) center center no-repeat;
+  -webkit-background-size: 2200%;
+  background-size: 2200%;
+}
+
+.clearfix:after {
+  clear: both;
+  display: block;
+  content: '.';
+  visibility: hidden;
+  height: 0;
+}
+
+.top-header {
+  //visibility: hidden;
+  font-size: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.06rem;
+  border: 1px solid #eaeaea;
+  background-color: #fff;
+  overflow: hidden;
+  z-index: 99;
+  .brand {
+    @include inlineBlock;
+    line-height: 1.06rem;
+  }
+  .logo {
+    @include inlineBlock;
+    vertical-align: middle;
+    height: .71rem;
+    width: .7rem;
+    margin-left: .3rem;
+    margin-right: .24rem;
+    background: url(../img/land_icons.png) no-repeat 0 .02rem;
+    background-size: 750%;
+  }
+  .word {
+    @include inlineBlock;
+    vertical-align: middle;
+    font-size: .28rem;
+  }
+  .btn {
+    @include inlineBlock;
+    float: right;
+    width: .9rem;
+    height: .5rem;
+    margin-top: .28rem;
+    margin-right: .3rem;
+    line-height: .5rem;
+    text-align: center;
+    font-size: .22rem;
+    background-color: #06be04;
+    //background-color: #ddd;
+    color: #fff;
+    @include borderRadius(.1rem);
+  }
+}
+.main-wrap {
+  margin-top: 1.14rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+  a{
+    display: block;
+    text-decoration: none;
+    color: transparent;
+  }
+  .to-join.video,.view-btn.video{
+    display: none;
+  }
+  .about .up-count,.about .comment-count{
+    display: none;
+  }
+  &.video{
+    .activity .act,.about p,.about .about-venue,.others,.view-btn,.to-join.act,.about .my-date{
+      display: none;
+    }
+    .to-join.video,.view-btn.video{
+      display: block;
+    }
+    .about{
+      padding-top: .2rem;
+      .about-me{
+        font-size: 14px;
+        div{
+          width: .48rem;
+          height: .48rem;
+        }
+        .up-count{
+          display: block;
+          position: relative;
+          float: right;
+          margin-top: -.05rem;
+          margin-right: .5rem;
+          font-size: 10px;
+        }
+        .up-count:before{
+          width: 24px;
+          height: 24px;
+          position: absolute;
+          left: -18px;
+          top: 4px;
+          content: '  ';
+          background: url(../img/land_icons.png) no-repeat;
+          -webkit-background-size: 100% 100%;
+          background-size: 1700%;
+          background-position: 0% 91%;
+        }
+        .comment-count{
+          @extend .up-count;
+          margin-right: .2rem;
+        }
+        .comment-count:before{
+          background-position: 6% 91%;
+          top: 6px;
+          left: -22px;
+        }
+      }
+    }
+    .view-btn.video {
+      display: block;
+      div {
+        background-color: #33bb77;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.activity {
+  //background-color: #fff;
+  //visibility: hidden;
+  .to-join {
+    padding: .16rem .14rem;
+    padding-bottom: 0;
+    background-color: #fff;
+    //border: 1px solid #ddd;
+    .to-join-wrap {
+      position: relative;
+      //background: url(../img/bg6.jpg) center center no-repeat;
+      //-webkit-background-size: cover;
+      //background-size: cover;
+      text-align: center;
+      img{
+        position: relative;
+        display: block;
+        width: 100%;
+      }
+    .count-down {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: .3rem .1rem;
+      @include flexbox;
+      div {
+        @include flex;
+        padding: .1rem;
+        background: url(../img/time.png) center center no-repeat;
+        background-size: 100% 100%;
+        color: #fff;
+        font-size: .6rem;
+        font-weight: bold;
+        text-align: center;
+        height: 1.1rem;
+        line-height: 1.1rem;
+      }
+      .yue {
+        color: #fff;
+        font-size: .16rem;
+        height: 1.1rem;
+        line-height: 1.9rem;
+      }
+      .maohao {
+        color: #fff;
+        font-size: .6rem;
+        line-height: 1.24rem;
+      }
+      .time-sep {
+        font-size: 30px;
+        line-height: 50px;
+      }
+    }
+    .members {
+      display: none;
+      margin-top: .5rem;
+      padding: .04rem .3rem;
+      color: #fff;
+      .icon-people:after {
+        background-position: 3px -39px;
+      }
+      span {
+        @include inlineBlock;
+        font-size: 12px;
+        vertical-align: middle;
+      }
+      .mem-left {
+        @include inlineBlock;
+        float: left;
+      }
+      .mem-right {
+        @include inlineBlock;
+        float: right;
+        aside {
+          @include inlineBlock;
+        }
+        .icon-male:after {
+          background-position: 1px -67px;
+        }
+        .icon-female:after {
+          background-position: 1px -52px;
+        }
+        .male {
+          margin-right: .1rem;
+          span {
+            em {
+            }
+          }
+        }
+        .female {
+          margin-left: .2rem;
+          span {
+          }
+        }
+      }
+      span {
+      }
+    }
+    .join-btn {
+      position: absolute;
+      bottom: .1rem;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 1rem;
+      padding: 0.08rem .2rem;
+      font-size: .3rem;
+      color: #fff;
+      box-sizing: border-box;
+      -webkit-border-radius: 0.05rem;
+      -moz-border-radius: 0.05rem;
+      border-radius: 10px;
+      .btn {
+        width: 100%;
+        height: 100%;
+        background-color: #26BF75;
+        text-align: center;
+        line-height: .85rem;
+        @include borderRadius(.1rem);
+      }
+      .right-go {
+        position: absolute;
+        right: .4rem;
+        top: .36rem;
+        margin-top: -.04rem;
+
+      }
+    }
+  }
+    &.video{
+      position: relative;
+      .to-join-wrap{
+        img{
+          position: relative;
+          display: block;
+          width: 100%;
+        }
+        .con-wrap{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          color: #fff;
+          background-color: rgba(0,0,0,.6);
+
+          z-index: 10;
+          &>div{
+            display: inline-block;
+            padding: .5rem .5rem;
+          }
+          h6{
+            font-size: 20px;
+            margin-bottom: 0;
+            margin-top: .8rem;
+          }
+          p{
+            margin-top: .1rem;
+            font-size: 14px;
+          }
+          .play-btn{
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            width: 40px;
+            height: 40px;
+            bottom: 14px;
+            left: 14px;
+            background: url(../img/land_icons.png) no-repeat;
+            -webkit-background-size: 100% 100%;
+            background-size: 1500%;
+
+            background-position: 0% 68%;
+          }
+        }
+        .video-wrap{
+          position: relative;
+          video{
+            width:100%;
+          }
+        }
+      }
+    }
+  }
+  .about {
+    padding: .14rem .14rem;
+    padding-top: .1rem;
+    background-color: #fff;
+    p {
+      margin-top: .14rem;
+      margin-left: .2rem;
+      font-size: .36rem;
+      font-weight: bold;
+      color: #555;
+    }
+    .about-me {
+      margin-left: .2rem;
+      div {
+        @include inlineBlock;
+        width: .64rem;
+        height: .64rem;
+        vertical-align: middle;
+      }
+      font-size: .26rem;
+      color: #9b9b9b;
+      img {
+        @include inlineBlock;
+        width: 100%;
+        height: 100%;
+        border-radius: 50% 50%;
+        -webkit-border-radius: 50% 50%;
+      }
+      .my-name {
+        @include inlineBlock;
+        margin-left: 10px;
+      }
+      .my-date {
+        float: right;
+        font-size: .2rem;
+        margin-top: .11rem;
+        margin-right: .12rem;
+      }
+    }
+    .about-venue {
+      margin-top: .2rem;
+      margin-left: .2rem;
+      margin-right: .12rem;
+      height: 50px;
+      font-size: .26rem;
+      color: #6f84ff;
+      background: url(../img/land_icons.png) repeat;
+      background-position: 0 -220px;
+      background-size: 341px 600px;
+      text-align: left;
+      line-height: 50px;
+      .icon-location{
+        vertical-align: -1px;
+        margin-left: 0.2rem;
+        margin-right: 0.05rem;
+        &:after{
+          background-size: 2100%;
+          background-position: 3px -123px;
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+  .others{
+    margin-top: .2rem;
+    padding-top: .2rem;
+    padding-left: .34rem;
+    padding-bottom: .2rem;
+    background:#fff;
+    .about-somebody {
+
+      img {
+        @include inlineBlock;
+        width: .56rem;
+        height: .56rem;
+        border-radius: 50% 50%;
+        -webkit-border-radius: 50% 50%;
+        margin-left: .12rem;
+        &:first-child{
+          margin-left: 0;
+        }
+      }
+    }
+    .join-number {
+      font-size: .24rem;
+      color: #c6c6c6;
+      margin-left: .05rem;
+      margin-top: .2rem;
+    }
+  }
+  .view-btn{
+    margin-top: .14rem;
+    padding: .2rem;
+    div{
+      width: 100%;
+      height: .88rem;
+      line-height: .88rem;
+      background-color: #fff;
+      text-align: center;
+      font-size: .28rem;
+      @include borderRadius(.05rem);
+      border: 1px solid #33bb77;
+      color: #33bb77;
+      span {
+      }
+    }
+
+  }
+}
+
+.list {
+  .items {
+    background-color: #fff;
+    .list-item {
+      &:first-child{
+        padding-top: .21rem;
+      }
+      margin-top: .12rem;
+      padding-top: .09rem;
+      padding-bottom: 0.15rem;
+      padding-left: 0.205rem;
+      border-bottom: 1px solid #dfdfdf;
+      @include flexbox;
+      .figure {
+        @include  inlineBlock;
+
+        img {
+          width: 1.5rem;
+          height: 1.2rem;
+        }
+        span {
+        }
+      }
+      .intro {
+        @include flex;
+        position: relative;
+        font-size: .2rem;
+        margin-left: .14rem;
+        vertical-align: top;
+        @include  inlineBlock;
+        .intro-title {
+          font-size: .3rem;
+          margin:0;
+          line-height: .4rem;
+          font-size: .3rem;
+          color: #454545;
+        }
+        p {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          margin-bottom: .02rem;
+          color: #ccc;
+          .minutes {
+            margin-right: .3rem;
+          }
+        }
+      }
+
+    }
+  }
+  @at-root {
+    .main-wrap.video .list .show-more-btn div{
+      background-color: #fff;
+      color: #33bb77;
+      border: 1px solid #33bb77;
+    }
+  }
+  .show-more-btn {
+    padding: .26rem;
+    padding-bottom: .3rem;
+    div{
+      width: 100%;
+      height: .88rem;
+      line-height: .88rem;
+      background-color: #33bb77;
+      text-align: center;
+      font-size: .28rem;
+      @include borderRadius(.05rem);
+      color: #fff;
+      span {
+      }
+    }
+    .icon-query{
+      vertical-align: -1px;
+      margin-right: 6px;
+      &:after{
+        -webkit-background-size: 2100%;
+        background-size: 2100%;
+        background-position: 0 -198px;
+        width: 14px;
+        height: 14px;
+      }
+
+    }
+  }
+}
+
+
