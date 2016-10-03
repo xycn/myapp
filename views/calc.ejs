@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"> -->
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="full-screen" content="yes">
+  <link rel='stylesheet' href='/css/semantic.min.css' />
+  <link rel='stylesheet' href='/css/style.css' />
+  <title>房贷计算</title>
+  <style>
+    .fields input{
+      font-size:20px!important;
+    }
+    .lb{
+      font-size:20px!important;
+      text-align:center!important;
+    }
+    .haicha_wrap label{
+      font-size:30px!important;
+    }
+    .haicha_wrap .ui.field{
+      font-size:30px!important;
+    }
+     .haicha_wrap p{
+      font-size:24px!important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ui container">
+    <h1 class="ui horizontal divider header">商业贷款</h1>
+      <div class="ui form">
+        <div class="inline seven fields">
+          <div class=" ui fluid lb field "><label>总价（万元）</label></div>
+          <div class=" ui fluid input field "><input type="text" class="date-pick zongjia" value="384" placeholder="总价"></div>
+          <div class=" ui fluid lb field "><label>评估比例（%）</label></div>
+          <div class=" ui fluid input field"><input type="text" class="date-pick  pinggu" value="0.95" placeholder="评估比例，如：0.97"></div>
+          <div class=" ui fluid lb field "><label>贷款比例（%）</label></div>
+          <div class=" ui fluid input field"><input type="text" class="date-pick daikuan" value="0.7" placeholder="贷款比例，如：0.7"></div>
+          <div class=" ui fluid input field"><div class="ui teal basic fluid huge button" onclick="CALC()">计算</div></div>
+        </div>
+      </div>
+      <div class="ui divider"></div>
+      <div class="ui four   statistics">
+          <div class="yellow statistic">
+            <div class="value" id="daikuan">
+              0
+            </div>
+            <div class="label">贷款金额（万元）</div>
+          </div>
+          <div class="red statistic">
+            <div class="value" id="shoufu">
+              0
+            </div>
+            <div class="label">首付(万元)</div>
+          </div>
+          <div class="violet statistic">
+            <div class="value" id="yuegong">
+              0
+            </div>
+            <div class="label">月供（元）</div>
+          </div>
+          <div class="teal statistic">
+            <div class="value" id="wangqianjia">
+              0
+            </div>
+            <div class="label">网签价（万元）</div>
+          </div> 
+          <div class="green statistic">
+            <div class="value" id="zongjia">
+              0
+            </div>
+            <div class="label">总价（万元）</div>
+          </div>  
+          <div class="brown statistic">
+            <div class="value" id="zhongjiefei">
+              0
+            </div>
+            <div class="label">中介费（万元）</div>
+          </div>
+          <div class="grey statistic">
+            <div class="value" id="shuifei">
+              0
+            </div>
+            <div class="label">税费（万元）</div>
+          </div>
+          <div class="black statistic">
+            <div class="value" id="fangdailixi">
+              0
+            </div>
+            <div class="label">房贷利息（万元）</div>
+          </div>
+      </div>
+      <h1 class="ui horizontal divider header">首付贷款</h1>
+      <div class="ui form">
+        <div class="inline four fields">
+          <div class=" ui fluid lb field "><label>贷款金额（万元）</label></div>
+          <div class=" ui fluid input field "><input type="text" class="date-pick daikuan_T" value="20" placeholder="贷款金额"></div>
+          <div class=" ui fluid lb field "><label>贷款年限（年）</label></div>
+          <div class=" ui fluid input field "><input type="text" class="date-pick nianxian_T" value="5" placeholder="贷款年限"></div>
+          <div class=" ui fluid input field"><div class="ui teal basic fluid huge button" onclick="CALC_T()">总计算</div></div>
+        </div>
+      </div>
+      <div class="ui divider"></div>
+      <div class="ui four   statistics">
+          <div class="yellow statistic">
+            <div class="value" id="shoufudai">
+              0
+            </div>
+            <div class="label">首付贷款（万元）</div>
+          </div>
+          <div class="red statistic">
+            <div class="value" id="shoufuyuegong">
+              0
+            </div>
+            <div class="label">首付贷月供（元）</div>
+          </div> 
+          <div class="violet statistic">
+            <div class="value" id="zongyuegong">
+              0
+            </div>
+            <div class="label">总月供（元）</div>
+          </div>
+          <div class="green statistic">
+            <div class="value" id="shoufudailixi">
+              0
+            </div>
+            <div class="label">首付贷利息（元）</div>
+          </div>  
+      </div>
+       <h1 class="ui  divider "></h1>
+       <div class="ui form haicha_wrap">
+        <div class="inline two fields">
+          <div class=" ui fluid lb four wide field "><h1>还差金额（万）：</h1>
+          </div> 
+          <div class=" ui fluid lb twelve wide field ">
+          <label id="fangdai_c"></label>万-<label>122</label>万(自己手里的钱)-<label id="shoufudai_c">0</label>万(首付贷)=<label id="haicha" style="color:red;font-weight:bold"></label>元       
+          </div></div>
+           <p>注：自己手里的钱122万是因为现在的情况是首付122万加20万首付贷够总首付,所以暂按手里有122万算</p>
+      </div>
+     
+  </div>
+  <script>
+    function $(el){
+      return document.querySelector(el)
+    }
+    function CALC(){
+        var ZJ=$('.zongjia').value*10000,
+            PGBL=$('.pinggu').value,
+            DKBL=$('.daikuan').value;
+        var daikuan=Ceil(ZJ*PGBL*DKBL);
+        var shuifei=ZJ*PGBL*0.01;
+        var zhongjiefei=ZJ*0.026;
+        var yuelilv=4.9;
+        var lilvzhekou=0.85;
+        var lilv=yuelilv*lilvzhekou;
+        var nianxian=30;
+        var yuegong=getPayByMonth(daikuan,nianxian,lilv/100).toFixed(2);
+        var fangdailixi = (yuegong * 12 * nianxian - daikuan);
+        $('#zongjia').innerText=toWan(ZJ);
+        $('#wangqianjia').innerText=toWan(ZJ*PGBL);      
+        $('#daikuan').innerText=toWan(daikuan);
+        $('#zhongjiefei').innerText=toWan(zhongjiefei)
+        $('#shuifei').innerText=toWan(shuifei)
+        $('#shoufu').innerText=toWan(ZJ-daikuan+shuifei+zhongjiefei);  
+        $('#yuegong').innerText=yuegong;
+         $('#fangdailixi').innerText=toWan(fangdailixi);
+    }
+    function getPayByMonth(dke,ns,nll) {
+        var pay = 0;
+        var yll = nll / 12;
+        pay = (dke * yll * (Math.pow((1 + yll), ns * 12)))  / (Math.pow((1 + yll), ns * 12) - 1);
+        return pay;
+    }
+    function Ceil(num){
+      return Math.ceil(num/10000)*10000;
+    }
+    function toWan(num){
+        return (num/10000).toFixed(2);
+    }
+    function Val(el){
+      return $(el).innerText;
+    }
+    function CALC_T(){
+      var nianxian=$('.nianxian_T').value;
+      var daikuan=$('.daikuan_T').value*10000;
+      var shoufulixi=daikuan*0.055*5;
+      var yuegong=(shoufulixi+daikuan)/(nianxian*12);
+      $('#shoufudai').innerText=daikuan;
+      $('#shoufuyuegong').innerText=yuegong;
+      $('#zongyuegong').innerText=parseFloat(Val('#yuegong'))+Number(yuegong);
+      $('#shoufudailixi').innerText=shoufulixi;
+      $('#shoufudai_c').innerText=daikuan/10000;
+      $('#fangdai_c').innerText=Val('#shoufu');
+      $('#haicha').innerText=Val('#shoufu')*10000-122*10000-daikuan;
+    }
+      
+    
+    </script>
+</body>
+
+</html>

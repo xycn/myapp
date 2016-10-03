@@ -29,5 +29,10 @@ router.get('/fanye/', function(req, res, next) {
 router.get('/angular/', function(req, res, next) {
   res.render('angular', { title: 'Express' });
 });
-
+router.get('/datePick/', function(req, res, next) {
+  res.render('datePick', { title: 'Express' });
+});
+router.get('/calc/', function(req, res, next) {
+  res.render('calc', { title: 'Express' });
+});
 module.exports = router;
