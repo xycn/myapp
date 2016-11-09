@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>APNG</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="../css/semantic.min.css">
+	<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+	<div class="ui container">
+		<div class="ui header">apng</div>
+		<div class="ui divider"></div>
+		<div data-apng-src="loading_slow.png">
+			<!--<img class="apng-image" src="loading_slow.png" alt=""></div>-->
+	</div>
+	<div class="ui container" id="container">
+		<!--<div class="loader">
+			<div class="line-masker two"></div>
+			<div class="line-masker three"></div>
+			<div class="line-masker four"></div>
+			<div class="line-masker five"></div>
+			<div class="circle">
+			</div>
+		</div>-->
+	</div>
+	<script src="../jquery/dist/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/apng-canvas/2.1.1/apng-canvas.min.js"></script>
+	
+	<script>
+        APNG.ifNeeded().then(function() {
+            var images = document.querySelectorAll(".apng-image");
+            for (var i = 0; i < images.length; i++) APNG.animateImage(images[i]);
+        });
+    </script>
+	<script src="index.js"></script>
+</body>
+
+</html>
