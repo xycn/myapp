@@ -7,7 +7,6 @@
 	<link href="../_assets/css/shared.css" rel="stylesheet" type="text/css"/>
 	<link href="../_assets/css/examples.css" rel="stylesheet" type="text/css"/>
 	<script src="../_assets/js/examples.js"></script>
-
 	<script src="../lib/easeljs-NEXT.combined.js"></script>
 	<!-- We also provide hosted minified versions of all CreateJS libraries.
 	  http://code.createjs.com -->
@@ -16,23 +15,113 @@
 	var stage, text;
 	function init() {
 		stage = new createjs.Stage("testCanvas");
-		// drawRect();
+		drawRect();
 		drawCircle();
+		drawCircle2();
+		drawStar();
+		drawEllipse();
+		drawRoundRect();
 	}
+	//四个参数分别为坐标和半径
 	function drawRect(){
 		var shape = new createjs.Shape();
-		shape.graphics.beginFill('#cd23de').drawRect(120, 120, 120, 120);
+		 var g=shape.graphics;
+		 //画矩形
+		// shape.graphics.beginFill('#cd23de').drawRect(240, 0, 120, 120);
+		//画渐变矩形
+		// g.beginLinearGradientFill(["#000","#FFF"], [0, 1], 0, 20, 0, 120).drawRect(240, 20, 120, 120)
+		g.beginLinearGradientStroke(["#f41d2e","#000"], [0, 1], 0, 20, 0, 120)
+		.beginLinearGradientFill(["#000","#FFF"], [0, 1], 0, 20, 0, 120)
+		.drawRect(240, 20, 120, 120)
 		stage.addChild(shape);
 		stage.update();
 	}
+	//三个参数分别为坐标和半径
 	function drawCircle(){
 		var shape = new createjs.Shape();
-		// shape.graphics.beginFill('#cd23de').drawCircle(120, 120,100);
-		// shape.graphics.setStrokeStyle(5).beginStroke('#0271BC').drawCircle(120, 120,100);
-		shape.graphics.setStrokeStyle(6).beginStroke('#0271BC').beginFill('#000').drawCircle(120, 120,100);
+		var g=shape.graphics;
+		// g.beginFill('#cd23de').drawCircle(120, 120,100);
+		// g.setStrokeStyle(5).beginStroke('#0271BC').drawCircle(120, 120,100);
+		// g.setStrokeStyle(6).beginStroke('#0271BC').beginFill('#000').drawCircle(120, 120,100);
+		var image = new Image();
+		image.src='../_assets/art/ground.png';
+		console.log(image)
+		g.beginBitmapFill(image,'repeat').beginBitmapStroke(image,'repeat').drawCircle(120,200,100);
+		// g.ss(6).s('#0271BC').f('#ccc').dc(120, 120,100);  //简写
 		stage.addChild(shape);
 		stage.update();
 	}
+	//绘制图形第二种写法
+	function drawCircle2(){
+		var g = new createjs.Graphics();
+			g.setStrokeStyle(1);
+			g.beginStroke(createjs.Graphics.getRGB(0,0,0));
+			g.beginFill(createjs.Graphics.getRGB(255,0,0));
+			g.drawCircle(0,0,50);
+
+			var s = new createjs.Shape(g);
+			s.x = 300;
+			s.y = 200;
+
+			stage.addChild(s);
+			stage.update();
+	}
+	// ｛｛画多边形｝｝
+	// 参数1、2 ：坐标
+	// 参数3：radius Number 图形的外半径
+	// 参数4：sides Number 多边形上星号或边上的点数.比如五角星的sidesNumber 是5
+	// 参数5：pointSize Number 星点的深度或“尖尖”.pointSize为0将绘制一个正多边形（无点），
+    //     	 pointSize为1将不绘制任何东西，因为点是无限远，值越小越瘦，值越大越胖。
+	// 参数6：angle Number 第一个点/角的角度.例如，值0将直接在中心的右边绘制第一个点 
+	function drawStar(){
+		var shape = new createjs.Shape();
+		// shape.graphics.beginFill("#FF0").drawPolyStar(100, 100, 50, 5, 0.6, -90);
+		shape.graphics.f("#FF0").dp(100, 100, 50, 5, 0.3, -90); //简写
+		stage.addChild(shape);
+		stage.update();
+	}
+	//｛｛画椭圆｝｝ 4个参数分别为坐标和宽高
+	function drawEllipse(){
+		var shape = new createjs.Shape();
+		// shape.graphics.beginFill("#FF0").drawEllipse(400, 100, 100, 20);
+		shape.graphics.f("#1F9").de(400, 100, 100, 50); //简写
+		stage.addChild(shape);
+		stage.update();
+	}
+	//画圆角矩形，第五个参数为圆角半径
+	function drawRoundRect(){
+		var shape = new createjs.Shape();
+		shape.graphics.beginFill("#42A2EF").drawRoundRect(520, 100, 100, 50,8); 
+		// 第五个到第9个参数分别为四个角的圆角半径,可以为负值（向里凹陷）
+		// shape.graphics.beginFill("#E0584A").drawRoundRectComplex(630, 100, 100, 50,8,-20,0,20);
+		shape.graphics.beginFill("#E0584A").rc(630, 100, 100, 50,8,-20,0,20); //简写
+		stage.addChild(shape);
+		stage.update();
+	}
+	//其他 图形实例方法 
+	function endFill(){
+
+		//endFill() 结束当前子路径，并开始一个没有填充的新路径。功能与beginFill（null）相同。一个微小的API方法“ef”也存在
+		//endStroke() 结束当前子路径，并开始一个没有笔画的新路径。功能与beginStroke（null）相同。一个微小的API方法“es”也存在
+		//getHSL() 返回hsl色值
+		//getRGB() 返回rgba色值
+		// lineTo(x,y) 从当前绘图点到指定位置绘制一条线，这将成为新的当前绘图点。
+					   //注意，必须在第一个lineTo（）之前调用moveTo。存在简写方法lt()
+		//moveTo() 将绘图点移动到指定位置。存在简写方法mt()
+		//quadraticCurveTo(cpx,cpy,x,y) 使用控制点（cpx，cpy）绘制从当前绘制点到（x，y）的二次曲线。
+			                           //有关详细信息，请阅读whatwg规范。一个微小的API方法“qt”也存在
+		//rect ( x  y  w  h ) 和drawRect()方法一样 使用当前填充和/或笔划在指定宽度和高度的（x，y）处绘制一个矩形。
+							  //有关详细信息，请阅读whatwg规范。一个微小的API方法“r”也存在
+		//setStrokeStyle (thickness  [caps=0]  [joints=0]  [miterLimit=10]  [ignoreScale=false])
+			//  1. 画笔粗细 
+			//2. 指示在行末使用的帽的类型。对接，圆形或正方形之一。默认为“对接”。还接受用于微小API的值0（butt），1（round）和2（square）
+			//3.指定在两条线相交处应使用的关节的类型。斜角，圆角或斜角之一。默认为“miter”。还接受用于微小API的值0（斜角），1（圆）和2（斜角）
+			//4.如果关节设置为“斜角”，则可以指定斜角极限比，其控制斜角关节将被剪切的点
+			//5.忽略scale，将总按照指定的粗细绘制。scale对粗细不起作用
+		//store() 存储所有图形命令，以便将来不会执行绘图。第二次调用store（）将添加到现有存储。这也影响drawAsPath（）
+	}
+	
+
 		
 	
 
@@ -42,7 +131,6 @@
 <body onload="init()">
 <header class="EaselJS">
 	<h1>BitmapText</h1>
-
 	<p>
 		The <code>BitmapText</code> class uses a <code>SpriteSheet</code> to
 		display text characters. Characters are defined in
